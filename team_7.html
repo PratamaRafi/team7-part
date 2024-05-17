@@ -1,0 +1,57 @@
+<!-- halaman untuk chart team 7 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chart team 7</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.js"></script>
+    <h1>chart team 7</h1>
+    <div id="barchart" style="height: 400px; width: 100%;"></div>
+
+    <script>
+        // data dari json
+        function barchartJS(){
+            fetch('data_team7.json')
+            .then(response => response.json()
+            .then(data => {
+         // membuat satu barchart
+        const country = data.map(item => item.Country);
+        const profit = data.map(item => item.Profit);
+        var ctx = document.getElementById('barchart').getContext('2d');
+        ctx.globalCompositeOperation = 'destination-over';
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: country,
+                datasets: [{
+                    label: 'Profit oer country',
+                    data: profit,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: '#000000',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        })
+        })
+    )}
+
+    window.onload = function(){
+        barchartJS();
+    }
+
+
+    </script>
+</body>
+</html>
+
