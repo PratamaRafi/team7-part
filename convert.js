@@ -12,7 +12,7 @@ const worksheet = data_excel.Sheets[sheet_names]
 
 // convert to json
 const data_json = xlsx.utils.sheet_to_json(worksheet)
-console.log(data_json[0])
+console.log(data_json)
 
 // write as json
 fs.writeFileSync('data_team7.json',JSON.stringify(data_json),'utf8')
